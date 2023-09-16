@@ -20,7 +20,7 @@ const SelectMetaVerse = () => {
     const handleSubmitIdea = useCallback(() => {
         setInputLoading(true);
         getEvents().then((events) => {
-            console.log(events);
+            setEvents(events);
             setInputLoading(false);
             setSelectingEvent(true);
         });
@@ -55,7 +55,7 @@ const SelectMetaVerse = () => {
                 onClose={toggleDrawer(false)}
                 onOpen={toggleDrawer(true)}
             >
-                <SelectEvents />
+                <SelectEvents events={events} />
             </SwipeableDrawer>
         </div>
     );
