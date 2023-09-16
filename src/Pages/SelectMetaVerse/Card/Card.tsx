@@ -123,8 +123,8 @@ const Card = forwardRef<HTMLDivElement, Props>((props, ref) => {
 
     return (
         <div className={className} ref={ref} style={{top, left, zIndex, filter}} onClick={selectEvent}>
-            {/* <div className="event-name">{eventName}</div> */}
-            <div className="event-name">layerDown: {layerDown}, Index: {index}, Id: {eventId}</div>
+            <div className="event-name">{eventName}</div>
+            {/* <div className="event-name">layerDown: {layerDown}, Index: {index}, Id: {eventId}</div> */}
             <div className="bottom">
                 <div className="person">
                     <div className="nickname">{nickname}，</div>
