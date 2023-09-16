@@ -25,7 +25,7 @@ const Cards = (props: Props) => {
     }, []);
 
     useEffect(() => {
-        getComments(0).then((newCards: Omit<CardProps, "index">[]) => {
+        getComments(1).then((newCards: Omit<CardProps, "index">[]) => {
             setCards(newCards.map((card, index) => ({...card, index})));
             setPage(prev => prev + 1);
         });
@@ -37,11 +37,10 @@ const Cards = (props: Props) => {
 
     useEffect(() => {    
         if (hiddenCards.length === countPerLayer) {
-            setCards(prevCards => [...prevCards.slice(countPerLayer), ...hiddenCards].map((card, index) => ({...card, index})));
+            setCards(prevCards => prevCards.slice(countPerLayer).map((card, index) => ({...card, index})));
             setHiddenCards([]);
         }
-    }, [hiddenCards]);  
-
+    }, [hiddenCards]); 
 
     useEffect(() => {
         if (countBeforeAskForMore === askForMore) {
