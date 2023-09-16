@@ -39,7 +39,6 @@ const MetaVerse = () => {
         setLoading(true);
             axios.post(`${baseUrl}/user/build-space-times`, {
             // axios.post(`/user/build-space-times`, {
-                "events": ["去一次远足"],
                 "userId": '1699330023510573057'
             }).then(({ data }) => {
                 if (data.msg === 'success') {
@@ -52,11 +51,11 @@ const MetaVerse = () => {
                         const { dateTime , time, imgUrls } = timeline[0];
                         setDate(moment(dateTime).format('YYYY MM DD'));
                         setMinute(time);
-                        setImgUrl(imgUrls[0]);
+                        setImgUrl(imgUrls?.[0]);
                         const moments = timeline.map((e: any, i: number) => {
                             const { dateTime , event, location, time, imgUrls } = e;
                             return {
-                                imgs: !i ? imgUrls.slice(0, 2) : [imgUrls[i + 1]],
+                                imgs: !i ? imgUrls?.slice(0, 2) : [imgUrls?.[i + 1]],
                                 time: {
                                     date: moment(dateTime).format('YYYY MM DD'),
                                     minute: time

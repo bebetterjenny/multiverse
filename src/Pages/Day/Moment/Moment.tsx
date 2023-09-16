@@ -17,7 +17,7 @@ const Moment = (props: MomentType) => {
             centerMode: true,
             slidesToShow: 1,
             slidesToScroll: 1,
-            variableWidth: imgs.length > 1,
+            variableWidth: imgs?.length > 1,
             swipe: true,
             touchMove: true,  
             prevArrow: <></>,
@@ -27,7 +27,7 @@ const Moment = (props: MomentType) => {
 
     return <div className="Moment">
         <Slider {...sliderSettings}>
-            {imgs.map((img,i) => 
+            {(imgs ?? [1]).map((img,i) => 
                 <div key={`slick-${i}`} className="img" style={{width: 230}}>
                     <div className="img-container" style={{width: 200, height: 264}}>
                         <img src={img} />
