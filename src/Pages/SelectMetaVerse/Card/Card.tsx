@@ -123,35 +123,11 @@ const Card = forwardRef<HTMLDivElement, Props>((props, ref) => {
         navigate('/metaverse');
     }, [navigate]);
 
-    // useEffect(() => {
-    //     if (!top) {
-    //         let num = 0;
-    //         switch (index % countPerLayer) {
-    //             case 0:
-    //                 num = getRandomInt(1, 33);
-    //                 break;
-    //             case 1:
-    //                 num = getRandomInt(67, 33);
-    //                 break;
-    //             case 2:
-    //                 num = getRandomInt(100, 67);
-    //                 break;
-    //         }
-    //         setTop(`${num}%`);
-    //     }
-    // }, [top, index, countPerLayer])
-
-    // useEffect(() => {
-    //     if (!left) {
-    //         const num = getRandomInt(2, 18);
-    //         setLeft(`${num}%`);
-    //     }
-    // }, [left, index, countPerLayer])
 
     return (
         <div className={className} ref={ref} style={{ top, left, zIndex, filter }} onClick={selectEvent}>
-            {/* <div className="event-name">{eventName}</div> */}
-            <div className="event-name">layerDown: {layerDown}, Index: {index}, Id: {eventId}</div>
+            <div className="event-name">{eventName}</div>
+            {/* <div className="event-name">layerDown: {layerDown}, Index: {index}, Id: {eventId}</div> */}
             <div className="bottom">
                 <div className="person">
                     <div className="nickname">{nickname}，</div>
