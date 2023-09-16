@@ -18,6 +18,7 @@ const Cards = (props: Props) => {
     const [hiddenCards, setHiddenCards] = useState<CardProps[]>([]);
     const [countBeforeAskForMore, setCountBeforeAskForMore] = useState(0);
     const [page, setPage] = useState(1);
+    const [loading, setLoading] = useState(false);
 
     const hiddenCard = useCallback((card: CardProps) => {
         setHiddenCards(hiddenCards => [...hiddenCards, card]);
@@ -25,9 +26,11 @@ const Cards = (props: Props) => {
     }, []);
 
     useEffect(() => {
+        setLoading(true);
         getComments(1).then((newCards: Omit<CardProps, "index">[]) => {
             setCards(newCards.map((card, index) => ({...card, index})));
             setPage(prev => prev + 1);
+            setLoading(false);
         });
     }, []);
 
@@ -67,6 +70,7 @@ const Cards = (props: Props) => {
                 onHidden={hiddenCard}
                 {...card}
             />)}
+            {loading && <div className="loading"></div>}
         </div>
     );
 }
