@@ -38,6 +38,7 @@ const Card = forwardRef<HTMLDivElement, Props>((props, ref) => {
     } = cardInfo;
 
     const [showStatus, setShowStatus] = useState<boolean | 'fading'>(true);
+
     const navigate = useNavigate();
 
     const className = useMemo(() => {
@@ -53,7 +54,7 @@ const Card = forwardRef<HTMLDivElement, Props>((props, ref) => {
                 str += " pos-bottom";
                 break;
         }
-        switch(showStatus) {
+        switch (showStatus) {
             case 'fading':
                 str += " fading";
                 break;
@@ -66,27 +67,6 @@ const Card = forwardRef<HTMLDivElement, Props>((props, ref) => {
         return str;
     }, [showStatus]);
 
-    const top = useMemo(() => {
-        let num = 0;
-        switch (index % countPerLayer) {
-            case 0:
-                num = getRandomInt(0, 33);
-                break;
-            case 1:
-                num = getRandomInt(67, 33);
-                break;
-            case 2:
-                num = getRandomInt(100, 67);
-                break;
-        }
-        return `${num}%`;
-    }, [index, countPerLayer]);
-
-    const left = useMemo(() => {
-        const num = getRandomInt(2, 18);
-        return `${num}%`;
-    }, [index, countPerLayer]);
-
     const layerDown = useMemo(() => Math.floor(zIndexReverse / countPerLayer), [zIndexReverse, countPerLayer]);
 
     const zIndex = useMemo(() => 100 - zIndexReverse, [layerDown]);
@@ -98,6 +78,28 @@ const Card = forwardRef<HTMLDivElement, Props>((props, ref) => {
         }
     }, [layerDown]);
 
+
+    const [top, _1] = useState(() => {
+        let num = 0;
+            switch (index % countPerLayer) {
+                case 0:
+                    num = getRandomInt(1, 33);
+                    break;
+                case 1:
+                    num = getRandomInt(67, 33);
+                    break;
+                case 2:
+                    num = getRandomInt(100, 67);
+                    break;
+            }
+            return `${num}%`;
+    });
+
+    const [left, _2] = useState(() => {
+        const num = getRandomInt(2, 18);
+        return `${num}%`;
+    });
+
     const hidden = useCallback(() => {
         setShowStatus('fading');
         setTimeout(() => {
@@ -107,12 +109,12 @@ const Card = forwardRef<HTMLDivElement, Props>((props, ref) => {
         onHidden(cardInfo)
     }, [cardInfo]);
 
-    const handleDislike = useCallback((event: React.MouseEvent<HTMLButtonElement>) => { 
+    const handleDislike = useCallback((event: React.MouseEvent<HTMLButtonElement>) => {
         hidden();
         event.stopPropagation();
     }, [hidden]);
 
-    const handleLike = useCallback((event: React.MouseEvent<HTMLButtonElement>) => { 
+    const handleLike = useCallback((event: React.MouseEvent<HTMLButtonElement>) => {
         hidden();
         event.stopPropagation();
     }, [hidden]);
@@ -121,22 +123,47 @@ const Card = forwardRef<HTMLDivElement, Props>((props, ref) => {
         navigate('/metaverse');
     }, [navigate]);
 
+    // useEffect(() => {
+    //     if (!top) {
+    //         let num = 0;
+    //         switch (index % countPerLayer) {
+    //             case 0:
+    //                 num = getRandomInt(1, 33);
+    //                 break;
+    //             case 1:
+    //                 num = getRandomInt(67, 33);
+    //                 break;
+    //             case 2:
+    //                 num = getRandomInt(100, 67);
+    //                 break;
+    //         }
+    //         setTop(`${num}%`);
+    //     }
+    // }, [top, index, countPerLayer])
+
+    // useEffect(() => {
+    //     if (!left) {
+    //         const num = getRandomInt(2, 18);
+    //         setLeft(`${num}%`);
+    //     }
+    // }, [left, index, countPerLayer])
+
     return (
-        <div className={className} ref={ref} style={{top, left, zIndex, filter}} onClick={selectEvent}>
-            <div className="event-name">{eventName}</div>
-            {/* <div className="event-name">layerDown: {layerDown}, Index: {index}, Id: {eventId}</div> */}
+        <div className={className} ref={ref} style={{ top, left, zIndex, filter }} onClick={selectEvent}>
+            {/* <div className="event-name">{eventName}</div> */}
+            <div className="event-name">layerDown: {layerDown}, Index: {index}, Id: {eventId}</div>
             <div className="bottom">
                 <div className="person">
                     <div className="nickname">{nickname}，</div>
                     <div className="brief">{age}岁，{gender}，{education}</div>
                 </div>
                 <div>
-                <IconButton size="small" className="icon-btn" onClick={handleDislike}> 
-                    <ThumbDownOffAltIcon fontSize="small" />
-                </IconButton>
-                <IconButton size="small" className="icon-btn" onClick={handleLike}>
-                    <ThumbUpOffAltIcon fontSize="small" />
-                </IconButton>
+                    <IconButton size="small" className="icon-btn" onClick={handleDislike}>
+                        <ThumbDownOffAltIcon fontSize="small" />
+                    </IconButton>
+                    <IconButton size="small" className="icon-btn" onClick={handleLike}>
+                        <ThumbUpOffAltIcon fontSize="small" />
+                    </IconButton>
                 </div>
             </div>
         </div>

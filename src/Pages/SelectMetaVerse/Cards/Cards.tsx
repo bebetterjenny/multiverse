@@ -2,7 +2,7 @@ import React, { useRef, useCallback, useState, useEffect } from 'react';
 import './Cards.scss';
 import { CardProps } from '../Card/types.d';
 import { mockCards } from './mock';
-import { getAdditionalComments, getFirstComments } from './api';
+import { getComments } from './api';
 import Card from '../Card';
 
 type Props = {
@@ -16,15 +16,18 @@ const Cards = (props: Props) => {
     const [cards, setCards] = useState<CardProps[]>([]);
     const cardsRef = useRef<HTMLElement[]>([]);
     const [hiddenCards, setHiddenCards] = useState<CardProps[]>([]);
+    const [countBeforeAskForMore, setCountBeforeAskForMore] = useState(0);
+    const [page, setPage] = useState(1);
 
     const hiddenCard = useCallback((card: CardProps) => {
-        console.log('setHiden')
         setHiddenCards(hiddenCards => [...hiddenCards, card]);
+        setCountBeforeAskForMore(prev => prev + 1);
     }, []);
 
     useEffect(() => {
-        getFirstComments().then((cards: CardProps[]) => {
-            setCards(cards);
+        getComments(0).then((newCards: Omit<CardProps, "index">[]) => {
+            setCards(newCards.map((card, index) => ({...card, index})));
+            setPage(prev => prev + 1);
         });
     }, []);
 
@@ -32,15 +35,28 @@ const Cards = (props: Props) => {
         cardsRef.current = cardsRef.current.slice(0, cards.length);
     }, [cardsRef, cards]);
 
+    useEffect(() => {    
+        if (hiddenCards.length === countPerLayer) {
+            setCards(prevCards => [...prevCards.slice(countPerLayer), ...hiddenCards].map((card, index) => ({...card, index})));
+            setHiddenCards([]);
+        }
+    }, [hiddenCards]);  
+
+
     useEffect(() => {
-        if (hiddenCards.length === askForMore) {
-            getAdditionalComments(cards.at(-1)!.index).then((moreCards: CardProps[]) => {
-                setCards(prevCards => [...prevCards.slice(askForMore), ...moreCards]);
-                setHiddenCards([]);
+        if (countBeforeAskForMore === askForMore) {
+            getComments(page).then((moreCards: Omit<CardProps, "index">[]) => {
+                setCards((prevCards: CardProps[]) => {
+                    const lastIndex = prevCards.at(-1)?.index!;
+                    const moreCardsIndexed: CardProps[] = moreCards.map((card, index) => ({...card, index: lastIndex + index + 1})) as CardProps[];
+                    const newCards: CardProps[] = [...prevCards, ...moreCardsIndexed];
+                    return newCards;
+                });
+                setCountBeforeAskForMore(0);
             });
         }
         
-    }, [hiddenCards, cards, cardsRef]);
+    }, [page, countBeforeAskForMore]);
 
     return (
         <div className="cards">

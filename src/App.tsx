@@ -37,11 +37,11 @@ const router = createBrowserRouter([
     element: <ReactLandingPage />,
   },
   {
-    path: '/landing',
+    path: '/landing', // Landing page
     element: <Landing />,
   },
   {
-    path: '/login',
+    path: '/login', // 登录页面
     element: <Login />,
   },
   {
@@ -49,15 +49,15 @@ const router = createBrowserRouter([
     element: <Tags />,
   },
   {
-    path: '/select-metaverse',
+    path: '/select-metaverse', // 选择卡片
     element: <SelectMetaVerse />,
   },
   {
-    path: '/metaverse',
+    path: '/metaverse', // 平行时空简介
     element: <Metaverse />,
   },
   {
-    path: '/day',
+    path: '/day', // 模拟一整天
     element: <Day />,
   },
   {
