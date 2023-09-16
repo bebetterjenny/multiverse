@@ -1,7 +1,14 @@
-export const getEvents = (): Promise<string[]> => {
-    return new Promise((resolve) => {
-        setTimeout(() => {
-        resolve(['event1', 'event2', 'event3']);
-        }, 1000);
-    });
-}
+import axios from "axios";
+import { baseUrl } from "../../constants";
+
+export const getEvents = () => axios.post(`${baseUrl}/event/recommend`, {
+    "page": 1,
+    "userId": '1699330023510573057'
+}).then(({ data }) => {
+    console.log({data})
+    if (data.msg === 'success') {
+        return data.data;
+    } else {
+        return [];
+    }
+});

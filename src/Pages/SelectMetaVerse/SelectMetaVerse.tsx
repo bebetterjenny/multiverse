@@ -8,6 +8,7 @@ import Input from './Input';
 import { getEvents } from './api';
 import { FormControl, FormControlLabel, List, Radio, RadioGroup, SwipeableDrawer } from '@mui/material';
 import SelectEvents from './SelectEvents';
+import { CardProps } from './Card/types';
 
 const backUrl = "/";
 
@@ -38,6 +39,7 @@ const SelectMetaVerse = () => {
 
         setSelectingEvent(open);
     }, []);
+
 
     return (
         <div className="selectMetaVerse">

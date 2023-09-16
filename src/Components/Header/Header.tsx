@@ -65,7 +65,7 @@ const Header = (props: Props) => {
             <ArrowBackIcon fontSize="medium" sx={{ color: "black", marginLeft: '-5px' }} onClick={handleBack} />
             <div className={`title${titleBold ? ' bold' : ''}`}>{title}</div>
             {topRightFunctiion === 'menu' && <svg className="circle" width="92" height="37" viewBox="0 0 92 37" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M58.3154 7.28072C54.5005 4.57311 40.2405 1.96395 13.7202 13.1882C-19.4302 27.2186 22.0078 35.7107 27.9275 35.7107C33.8473 35.7107 70.9442 39.0336 87.914 23.1572C101.49 10.456 66.9977 3.09621 48.0546 1.00395C37.3991 0.880878 13.0888 3.58849 1.09148 15.4035" stroke="#FA6218" stroke-width="2" stroke-linecap="round" />
+                <path d="M58.3154 7.28072C54.5005 4.57311 40.2405 1.96395 13.7202 13.1882C-19.4302 27.2186 22.0078 35.7107 27.9275 35.7107C33.8473 35.7107 70.9442 39.0336 87.914 23.1572C101.49 10.456 66.9977 3.09621 48.0546 1.00395C37.3991 0.880878 13.0888 3.58849 1.09148 15.4035" stroke="#FA6218" strokeWidth="2" strokeLinecap="round" />
             </svg>}
             {topRightFunctiion === 'menu' && <MenuIcon fontSize="medium" sx={{ color: "black", marginLeft: '-5px' }} onClick={handleOpenMenu} />}
             {topRightFunctiion === 'share' && <ShortcutIcon fontSize="medium" sx={{ color: "black", marginLeft: '-5px' }} onClick={handleShare} />}

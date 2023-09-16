@@ -2,7 +2,7 @@ import React, { useRef, useCallback, useState, useEffect } from 'react';
 import './Cards.scss';
 import { CardProps } from '../Card/types.d';
 import { mockCards } from './mock';
-import { getAdditionalComments, getCommentsFirst } from './api';
+import { getAdditionalComments, getFirstComments } from './api';
 import Card from '../Card';
 
 type Props = {
@@ -23,7 +23,7 @@ const Cards = (props: Props) => {
     }, []);
 
     useEffect(() => {
-        getCommentsFirst().then((cards: CardProps[]) => {
+        getFirstComments().then((cards: CardProps[]) => {
             setCards(cards);
         });
     }, []);

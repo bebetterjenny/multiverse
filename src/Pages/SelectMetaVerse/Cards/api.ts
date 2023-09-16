@@ -1,27 +1,35 @@
+import axios from "axios";
 import { CardProps } from "../Card/types";
 import { mockCards } from "./mock";
 import { v4 as uuid } from 'uuid';
+import { baseUrl } from "../../../constants";
 
-export const getCommentsFirst = (): Promise<CardProps[]> => new Promise((resolve) => {
-    resolve(mockCards.map((card, index) => ({
-        ...card,
-        index,
-        eventId: uuid()
-    })) as CardProps[]);
+export const getFirstComments = (): Promise<CardProps[]> => axios.post(`${baseUrl}/event/recommend`, {
+    "page": 1,
+    "userId": '1699330023510573057'
+}).then(({ data }) => {
+    if (data.msg === 'success') {
+        return data.data;
+    } else {
+        return [];
+    }
 });
 
-export const getAdditionalComments = (lastIndex: number): Promise<CardProps[]>  => new Promise((resolve) => {
-    const mock = {
-        eventName: "这一天醒来以后没有玩手机，而是起床后直接做了一套早操。",
-        nickname: "小明",
-        description: "",
-        age: 20,
-        gender: "男",
-        education: "字节程序员"
-    };
-    resolve(Array(5).fill(0).map((e, index) => ({
-        ...mock,
-        index: lastIndex + index + 1,
-        eventId: uuid()
-    })) as CardProps[]);
-});
+export const getAdditionalComments = (lastIndex: number): Promise<CardProps[]> => {
+    const page = Math.floor((lastIndex - 20) / 5) + 2;
+    return axios.post(`${baseUrl}/event/recommend`, {
+        "page": page,
+        "userId": '1699330023510573057'
+    }).then(({ data }) => {
+        if (data.msg === 'success') {
+            return data.data.map((card: Omit<CardProps, "index">, index: number) => ({
+                ...card,
+                index: lastIndex + index + 1,
+            }));
+        } else {
+            return [];
+        }
+    });
+}
+
+
