@@ -1,0 +1,136 @@
+* {
+  box-sizing: border-box;
+}
+
+body::-webkit-scrollbar-track {
+  background-color: #F2E5D7;
+  background-image: url('../public/blur.svg');
+  mix-blend-mode: color-burn;
+}
+
+#root {
+  overflow-x: hidden;
+}
+
+.App {
+  text-align: center;
+  background-color: #F2E5D7;
+  width: 100%;
+  min-width: 100vw;
+  height: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.mobile-container {
+  width: 100%;
+  min-width: 100vw;
+  height: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 30px 0 20px;
+  z-index: 1;
+}
+
+.background {
+  position: absolute;
+  width: 100%;
+  min-width: 100vw;
+  height: 100%;
+  min-height: 100vh;
+  top: 0;
+  left: 0;
+  background-image: url('../public/threeColorBg.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  &::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-image: url('../public/blur.svg');
+    mix-blend-mode: color-burn;
+  }
+}
+
+.App.day .background {
+  background-size: 150% 150%;
+  background-position-y: 150%;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.typo-secondary {
+  font-size: 16px;
+  color: rgba(0, 0, 0, 0.4);
+}
+
+.img-container {
+  border: 1px black solid;
+  position: relative;
+  background-color: #FFF7EA;
+
+  &:after {
+    content: '';
+    width: 80%;
+    height: 10px;
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: black;
+    z-index: -1;
+  }
+}
+
+.loading {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background-color: rgba(225, 225, 225, 0.2);
+  backdrop-filter: blur(6px);
+}

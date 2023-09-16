@@ -1,0 +1,15 @@
+.landing {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1;
+    padding-bottom: 30px;
+}
+
+.landing-header {
+    text-align: center;
+}
+
+.landing-footer {
+    color: rgba(0, 0, 0, 0.4);
+}

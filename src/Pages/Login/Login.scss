@@ -1,0 +1,47 @@
+.login {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-bottom: 100px;
+    flex: 1;
+    & .login-up {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        align-items: center;
+        & .header {
+            align-self: flex-start;
+            text-align: start;
+        }
+    }
+    & .login-line {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        & .MuiDivider-root {
+            flex: 1;
+        }        
+        & .or {
+            z-index: 1;
+        }
+    }
+    & .login-down {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 30px;
+        & > button {
+            width: 100%;
+        }
+        & .wechat-icon {
+            background-image: url('./wechat.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            width: 24px;
+            height: 24px;
+        }
+    }
+}

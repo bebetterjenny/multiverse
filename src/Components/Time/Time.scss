@@ -1,0 +1,15 @@
+.time {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+
+    & .date {
+        font-size: 19px;
+        font-weight: bold;
+    }
+
+    & .minute {
+        font-size: 12px;
+    }
+}
