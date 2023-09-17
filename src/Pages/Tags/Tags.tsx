@@ -26,8 +26,9 @@ const Tags = () => {
   }, []);
 
   const handleNextClick = useCallback(() => {
-    navigate('/select-metaverse');
-  }, []);
+    // navigate(`/select-metaverse?tags=${selectedTags.join(',')}`);
+    navigate(`/select-metaverse`);
+  }, [selectedTags]);
   
 
   return (
