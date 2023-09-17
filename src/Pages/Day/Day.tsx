@@ -23,6 +23,8 @@ const Day = () => {
             <div className="container">
                 {moments.map((moment, i) => <Moment key={i} {...moment} />)}
             </div>
+
+            <div className="background"></div>
         </div>
     );
 }

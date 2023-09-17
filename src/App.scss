@@ -37,7 +37,7 @@ body::-webkit-scrollbar-track {
   z-index: 1;
 }
 
-.background {
+.App > .background {
   position: absolute;
   width: 100%;
   min-width: 100vw;
@@ -133,4 +133,13 @@ body::-webkit-scrollbar-track {
   height: 200%;
   background-color: rgba(225, 225, 225, 0.2);
   backdrop-filter: blur(6px);
+  .circle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-55%, -45%);
+    .MuiCircularProgress-root {
+      color: black;
+    }
+  }
 }

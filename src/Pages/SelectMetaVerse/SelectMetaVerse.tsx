@@ -10,7 +10,7 @@ import { FormControl, FormControlLabel, List, Radio, RadioGroup, SwipeableDrawer
 import SelectEvents from './SelectEvents';
 import { CardProps } from './Card/types';
 
-const backUrl = "/";
+const backUrl = "/tags";
 
 const SelectMetaVerse = () => {
     const [inputLoading, setInputLoading] = useState(false);

@@ -2,14 +2,44 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
+
     & .container {
         margin-top: 40px;
     }
+
     & .curv:nth-child(1) {
         top: 160px;
         right: -40%;
     }
+
     & .curv:nth-child(2) {
         bottom: 100px;
+    }
+
+    & .background {
+        position: absolute;
+        width: 200%;
+        height: 600px;
+        top: 0;
+        left: -50%;
+        transform: translateY(-64%);
+        background-image: url('../../../public/threeColorBg.svg');
+        background-color: #F2E5D7;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+        z-index: -1;
+
+        &::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-image: url('../../../public/blur.svg');
+            mix-blend-mode: color-burn;
+        }
     }
 }

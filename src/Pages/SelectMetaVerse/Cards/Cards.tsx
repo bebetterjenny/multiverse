@@ -4,6 +4,7 @@ import { CardProps } from '../Card/types.d';
 import { mockCards } from './mock';
 import { getComments } from './api';
 import Card from '../Card';
+import { CircularProgress } from '@mui/material';
 
 type Props = {
     
@@ -70,7 +71,7 @@ const Cards = (props: Props) => {
                 onHidden={hiddenCard}
                 {...card}
             />)}
-            {loading && <div className="loading"></div>}
+            {<div className="loading"><div className="circle"><CircularProgress /></div></div>}
         </div>
     );
 }

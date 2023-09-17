@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import './MetaVerse.scss';
 import Header from '../../Components/Header';
-import { Button } from '@mui/material';
+import { Button, CircularProgress } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import Time from '../../Components/Time';
 import { baseUrl } from '../../constants';
@@ -98,7 +98,7 @@ const MetaVerse = () => {
                 <Button className="back" variant="text" onClick={handleBack}>返回</Button>
             </div>
             <Curv />
-            {loading && <div className="loading"></div>}
+            {loading && <div className="loading"><div className="circle"><CircularProgress /></div></div>}
         </div>
     );
 }
