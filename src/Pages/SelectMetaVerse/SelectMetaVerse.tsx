@@ -15,7 +15,7 @@ const backUrl = "/";
 const SelectMetaVerse = () => {
     const [inputLoading, setInputLoading] = useState(false);
     const [selectingEvent, setSelectingEvent] = useState(false);
-    const [events, setEvents] = useState([]);
+    const [events, setEvents] = useState<Array<{id: string; eventName: string}>>([]);
 
     const handleSubmitIdea = useCallback(() => {
         setInputLoading(true);
@@ -50,6 +50,7 @@ const SelectMetaVerse = () => {
             <Cards />
             <Input onSubmitIdea={handleSubmitIdea} loading={inputLoading} />
             <SwipeableDrawer
+                className="selectMetaVerse__drawer"
                 anchor="bottom"
                 open={selectingEvent}
                 onClose={toggleDrawer(false)}
